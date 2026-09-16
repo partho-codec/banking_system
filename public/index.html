@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Apex Digital Banking System - Secure Academic Banking Platform built with Node.js, Express, MySQL, and Modern Vanilla Web Technologies.">
+  <title>Apex Digital Bank | Core Banking Platform</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .hero {
+      padding: 5rem 0 3rem;
+      text-align: center;
+      position: relative;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-size: 3.25rem;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+    .demo-creds-card {
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), var(--shadow-glow);
+    }
+    .creds-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+    }
+    .cred-item {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 1.2rem;
+      text-align: left;
+    }
+    .cred-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .feature-card {
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #818cf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.3rem; }
+      .creds-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header class="navbar">
+    <a href="/" class="brand" id="brand-home-link">
+      <div class="brand-icon">🏦</div>
+      <span>Apex<span style="color: var(--primary-light);">Bank</span></span>
+    </a>
+    <nav class="nav-actions" id="main-nav-actions">
+      <a href="/login.html" class="btn btn-secondary btn-sm" id="nav-login-btn">Sign In</a>
+      <a href="/login.html?tab=register" class="btn btn-primary btn-sm" id="nav-register-btn">Open Account</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="container">
+    <section class="hero">
+      <div class="hero-pill">
+        <span>⚡</span> Academic Waterfall SDLC Project &bull; Module 1 Online
+      </div>
+      <h1 class="hero-title text-gradient">
+        Next-Generation Core Banking Engineered for Precision
+      </h1>
+      <p class="hero-subtitle">
+        A complete digital banking architecture featuring JWT role-based security, automated account provisioning, KYC identity verification, and ACID financial transactions.
+      </p>
+
+      <div class="hero-actions">
+        <a href="/login.html" class="btn btn-primary" id="hero-get-started-btn">Access Banking Portal &rarr;</a>
+        <a href="/login.html?tab=register" class="btn btn-secondary" id="hero-register-btn">Register New Account</a>
+      </div>
+
+      <!-- Quick Demo Credentials Box -->
+      <div class="demo-creds-card">
+        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem;">
+          <div style="text-align: left;">
+            <h3 style="font-size: 1.15rem; color: #fff;">⚡ Quick Test Credentials</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Click to copy or use them directly on the login page.</p>
+          </div>
+          <span class="badge badge-active">DB Ready</span>
+        </div>
+
+        <div class="creds-grid">
+          <!-- Customer Demo -->
+          <div class="cred-item">
+            <div class="cred-header">
+              <span style="font-weight: 700; color: var(--accent-cyan);">Customer Account</span>
+              <span class="badge badge-role">customer</span>
+            </div>
+            <p style="font-size: 0.85rem; margin-bottom: 0.35rem; color: var(--text-muted);">
+              Email: <span class="mono" style="color: #fff;">customer@bank.com</span>
+            </p>
+            <p style="font-size: 0.85rem; margin-bottom: 0.85rem; color: var(--text-muted);">
+              Password: <span class="mono" style="color: #fff;">Customer@123</span>
+            </p>
+            <button class="btn btn-secondary btn-sm" style="width: 100%;" onclick="quickFillAndLogin('customer@bank.com', 'Customer@123', 'customer')" id="quick-login-customer">
+              1-Click Demo Login
+            </button>
+          </div>
+
+          <!-- Admin Demo -->
+          <div class="cred-item">
+            <div class="cred-header">
+              <span style="font-weight: 700; color: #a5b4fc;">Admin Portal</span>
+              <span class="badge badge-role">admin</span>
+            </div>
+            <p style="font-size: 0.85rem; margin-bottom: 0.35rem; color: var(--text-muted);">
+              Email: <span class="mono" style="color: #fff;">admin@bank.com</span>
+            </p>
+            <p style="font-size: 0.85rem; margin-bottom: 0.85rem; color: var(--text-muted);">
+              Password: <span class="mono" style="color: #fff;">Admin@123</span>
+            </p>
+            <button class="btn btn-secondary btn-sm" style="width: 100%;" onclick="quickFillAndLogin('admin@bank.com', 'Admin@123', 'admin')" id="quick-login-admin">
+              1-Click Admin Login
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Grid (The 3 Modules) -->
+      <div class="grid-3" style="text-align: left;">
+        <div class="glass-card feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3 style="margin-bottom: 0.5rem;">1. Authentication & KYC</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+            JWT-signed session management, bcrypt password hashing, role-based authorization, and comprehensive KYC identity registration.
+          </p>
+          <span class="badge badge-active">Module 1 Active</span>
+        </div>
+
+        <div class="glass-card feature-card">
+          <div class="feature-icon" style="color: #10b981; background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3);">💸</div>
+          <h3 style="margin-bottom: 0.5rem;">2. Transaction Core</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Instant deposits, withdrawals, and recipient-verified transfers with ACID-compliant MySQL row locks and audit records.
+          </p>
+          <span class="badge badge-pending">Module 2 Upcoming</span>
+        </div>
+
+        <div class="glass-card feature-card">
+          <div class="feature-icon" style="color: #f59e0b; background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.3);">🏛️</div>
+          <h3 style="margin-bottom: 0.5rem;">3. Admin & Loan Center</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+            System-wide account oversight, freeze/unfreeze controls, automated loan approval engine, and aggregate financial metrics.
+          </p>
+          <span class="badge badge-pending">Module 3 Upcoming</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script>
+    // Quick Demo helper: saves creds in sessionStorage and redirects to login
+    function quickFillAndLogin(email, password, role) {
+      sessionStorage.setItem('quick_email', email);
+      sessionStorage.setItem('quick_pass', password);
+      sessionStorage.setItem('quick_role', role);
+      window.location.href = '/login.html';
+    }
+
+    // If already logged in, update navbar
+    document.addEventListener('DOMContentLoaded', () => {
+      if (Auth.isLoggedIn()) {
+        const user = Auth.getUser();
+        const nav = document.getElementById('main-nav-actions');
+        const targetUrl = user && user.role === 'admin' ? '/admin.html' : '/dashboard.html';
+        nav.innerHTML = `
+          <a href="${targetUrl}" class="btn btn-secondary btn-sm">Go to Dashboard</a>
+          <button onclick="Auth.logout()" class="btn btn-danger btn-sm">Sign Out</button>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

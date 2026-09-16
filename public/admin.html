@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrator Console | Apex Digital Bank</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .admin-layout {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .data-table-container {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    table.modern-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    table.modern-table th {
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-muted);
+      font-weight: 600;
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    table.modern-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-main);
+    }
+    table.modern-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .status-btn {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      border: none;
+      transition: var(--transition);
+    }
+    .status-btn.freeze {
+      background: rgba(244, 63, 94, 0.15);
+      color: #fb7185;
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+    .status-btn.freeze:hover {
+      background: rgba(244, 63, 94, 0.3);
+    }
+    .status-btn.unfreeze {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .status-btn.unfreeze:hover {
+      background: rgba(16, 185, 129, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Admin Top Navbar -->
+  <header class="navbar">
+    <a href="/admin.html" class="brand">
+      <div class="brand-icon" style="background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);">🛡️</div>
+      <span>Apex<span style="color: var(--primary-light);">Bank</span> <small style="font-size: 0.7rem; font-weight: 600; color: #ec4899;">| Admin Console</small></span>
+    </a>
+
+    <div class="nav-actions">
+      <span class="badge badge-role" style="background: rgba(236, 72, 153, 0.15); color: #f472b6; border-color: rgba(236, 72, 153, 0.3);">
+        Administrator
+      </span>
+      <span id="admin-name" style="font-size: 0.9rem; font-weight: 600;">Admin</span>
+      <button onclick="Auth.logout()" class="btn btn-danger btn-sm">Sign Out</button>
+    </div>
+  </header>
+
+  <main class="admin-layout">
+
+    <section class="admin-header">
+      <div>
+        <h1 style="font-size: 1.85rem; margin-bottom: 0.3rem;">System User & Account Registry</h1>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+          View all registered customers, national ID credentials, and account statuses.
+        </p>
+      </div>
+      <div>
+        <button onclick="loadAdminUsers()" class="btn btn-secondary btn-sm" id="btn-refresh-users">
+          🔄 Refresh Directory
+        </button>
+      </div>
+    </section>
+
+    <!-- Module 3 Roadmap Alert -->
+    <div class="glass-card" style="margin-bottom: 2rem; border-left: 4px solid var(--primary-light); background: rgba(99, 102, 241, 0.08);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h4 style="color: #a5b4fc; margin-bottom: 0.25rem;">Administrator Control Console (Module 1 Overview)</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            Currently displaying active database records registered through Module 1. Full admin reporting analytics and loan approval workflows will be extended in Module 3.
+          </p>
+        </div>
+        <span class="badge badge-active">Module 1 Active</span>
+      </div>
+    </div>
+
+    <!-- Users Table Card -->
+    <div class="glass-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3>Registered Accounts (<span id="user-count">0</span>)</h3>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="form-control" 
+          placeholder="Filter by name, email, or account #..." 
+          style="max-width: 320px;"
+          onkeyup="filterUsersTable()"
+        >
+      </div>
+
+      <div class="data-table-container">
+        <table class="modern-table" id="users-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Customer Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Account #</th>
+              <th>Balance</th>
+              <th>KYC Status</th>
+              <th>Account Status</th>
+              <th>Registered</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="users-table-body">
+            <tr>
+              <td colspan="10" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                Loading registered accounts...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
